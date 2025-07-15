@@ -1,10 +1,26 @@
 import httpStatus from 'http-status';
+// import { ENUM_ORDER_STATUS } from '../../../enums/order';
 import ApiError from '../../../errors/ApiError';
+import { Order } from '../order/order.model';
 import { Product } from '../product/product.model';
 import { IReview } from './review.interface';
 import { Review } from './review.model';
 
 const createReview = async (reviewData: IReview): Promise<IReview> => {
+  // Check if user has purchased the product
+  const hasPurchased = await Order.exists({
+    user: reviewData.user,
+    'items.product': reviewData.product,
+    // status: ENUM_ORDER_STATUS.DELIVERED,
+  });
+
+  if (!hasPurchased) {
+    throw new ApiError(
+      httpStatus.FORBIDDEN,
+      'You can only review products you have purchased'
+    );
+  }
+
   // Check if product exists
   const product = await Product.findById(reviewData.product);
   if (!product) {

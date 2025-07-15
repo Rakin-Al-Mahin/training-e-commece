@@ -28,23 +28,4 @@ export default {
     pass: process.env.EMAIL_PASS,
   },
   clientBaseUrl: process.env.CLIENT_BASE_URL,
-  stripe: {
-    secret_key: process.env.STRIPE_SECRET_KEY,
-    return_url: process.env.STRIPE_RETURN_URL,
-    success_url: process.env.STRIPE_SUCCESS_URL,
-    cancel_url: process.env.STRIPE_CANCEL_URL,
-    success_url_web: process.env.STRIPE_SUCCESS_URL_WEB,
-    cancel_url_web: process.env.STRIPE_CANCEL_URL_WEB,
-    webhook_secret: process.env.STRIPE_WEBHOOK_SECRET,
-  },
-  firebase: {
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-    privateKey: process.env.FIREBASE_PRIVATE_KEY,
-  },
-  cron_job: {
-    cron_api_key: process.env.CRON_API_KEY,
-    silent_notification_api_key: process.env.SILENT_NOTIFICATION_API_KEY,
-  },
-  logtail_token: process.env.LOGTAIL_TOKEN,
 };
